@@ -1,9 +1,9 @@
 /*
- *
- * * *
- * * * * *
- * * * * * * *
  * * * * * * * * *
+ * * * * * * *
+ * * * * *
+ * * *
+ *
  */
 
 #include <bits/stdc++.h>
@@ -25,10 +25,26 @@ void printPattern(int num)
         {
             cout << "*";
         }
+
+        cout << endl;
+    }
+    for (int i = 0; i < num; i++)
+    {
+        for (int j = 0; j < i; j++)
+        {
+            cout << " ";
+        }
+        for (int j = num; j > i; j--)
+        {
+            cout << "*";
+        }
+        for (int j = num; j > i + 1; j--)
+        {
+            cout << "*";
+        }
         cout << endl;
     }
 }
-
 int main()
 {
     int num;
