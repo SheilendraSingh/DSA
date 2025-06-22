@@ -1,9 +1,8 @@
 /*
-    1
-    1 2
-    1 2 3
-    1 2 3 4
-    1 2 3 4 5
+    1             1
+    1 2         2 1
+    1 2 3     3 2 1
+    1 2 3 4 4 3 2 1
  */
 
 #include <bits/stdc++.h>
@@ -25,10 +24,10 @@ void printPattern(int num)
         {
             cout << " ";
         }
-        for (int j = i + 1; j > 0; j--)
+        for (int j = i; j >= 0; j--)
         {
 
-            cout << j;
+            cout << j + 1;
         }
 
         cout << endl;
