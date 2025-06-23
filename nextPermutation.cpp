@@ -15,6 +15,7 @@ vector<int> nextPermutation(vector<int> &arr, int n)
     if (ind == -1)
     {
         reverse(arr.begin(), arr.end());
+        return arr;
     }
 
     for (int i = n - 1; i >= ind; i--)
