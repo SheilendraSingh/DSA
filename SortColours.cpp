@@ -5,7 +5,7 @@ void sortColours(vector<int> &arr)
 {
     int s = 0, m = 0, e = arr.size() - 1;
 
-    while (m < e)
+    while (m <= e)
     {
         if (arr[m] == 0)
         {
@@ -14,12 +14,12 @@ void sortColours(vector<int> &arr)
             m++;
         }
 
-        if (arr[m] == 1)
+        else if (arr[m] == 1)
         {
             m++;
         }
 
-        if (arr[m] == 2)
+        else if (arr[m] == 2)
         {
             swap(arr[m], arr[e]);
             e--;
@@ -29,6 +29,7 @@ void sortColours(vector<int> &arr)
 
 int main()
 {
+
     int n, a;
     cout << "Enter the size of array: ";
     cin >> n;
