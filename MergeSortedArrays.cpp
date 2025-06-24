@@ -1,29 +1,53 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-pair<vector<int>, vector<int>> mergeSorted(vector<int> A, vector<int> B, int m, int n)
+void mergeSorted(vector<int> &A, vector<int> &B, int m, int n)
 {
 
-    // Optimal 1
-
-    int Ai = m - 1;
-    int Bi = 0;
-
-    while (Ai < m && Bi < n)
+    // Optimized
+    int idx = m + n - 1, i = m - 1, j = n - 1;
+    while (i >= 0 && j >= 0)
     {
-        if (A[Ai] > B[Bi])
+        if (A[i] >= B[j])
         {
-            swap(A[Ai], B[Bi]);
-            Ai--;
-            Bi++;
+            A[idx] = A[i];
+            idx--;
+            i--;
         }
         else
         {
-            break;
+            A[idx] = B[j];
+            idx--;
+            j--;
         }
     }
-    sort(A.begin(), A.end());
-    sort(B.begin(), B.end());
+    while (j >= 0)
+    {
+        A[idx] = B[j];
+        idx--;
+        j--;
+    }
+
+    // // Optimal 1
+
+    // int Ai = m - 1;
+    // int Bi = 0;
+
+    // while (Ai < m && Bi < n)
+    // {
+    //     if (A[Ai] > B[Bi])
+    //     {
+    //         swap(A[Ai], B[Bi]);
+    //         Ai--;
+    //         Bi++;
+    //     }
+    //     else
+    //     {
+    //         break;
+    //     }
+    // }
+    // sort(A.begin(), A.end());
+    // sort(B.begin(), B.end());
 
     // Brute Force
 
@@ -75,10 +99,7 @@ pair<vector<int>, vector<int>> mergeSorted(vector<int> A, vector<int> B, int m, 
     //         B.push_back(C[i]);
     //     }
     // }
-
-    return {A, B};
 }
-
 int main()
 {
 
@@ -124,25 +145,25 @@ int main()
     }
     cout << "}" << endl;
 
-    pair<vector<int>, vector<int>> C = mergeSorted(A, B, m, n);
+    mergeSorted(A, B, m, n);
 
     cout << "Sorted arrays:\n";
 
     cout << endl
          << "{";
-    for (int i = 0; i < C.first.size(); i++)
+    for (int i = 0; i < A.size(); i++)
     {
-        cout << C.first[i];
-        if (i < C.first.size() - 1)
+        cout << A[i];
+        if (i < A.size() - 1)
             cout << ", ";
     }
     cout << "}" << endl;
 
     cout << "{";
-    for (int i = 0; i < C.second.size(); i++)
+    for (int i = 0; i < B.size(); i++)
     {
-        cout << C.second[i];
-        if (i < C.second.size() - 1)
+        cout << B[i];
+        if (i < B.size() - 1)
             cout << ", ";
     }
     cout << "}" << endl;
