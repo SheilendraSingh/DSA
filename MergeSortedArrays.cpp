@@ -1,32 +1,72 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void mergeSorted(vector<int> &A, vector<int> &B, int m, int n)
+void mergeSorted(vector<int> &a, vector<int> &b, int m, int n)
 {
 
+    // gape methode
+
+    int gape = ((m + n) / 2) + ((m + n) % 2);
+
+    while (gape > 0)
+    {
+        int i = 0;
+        int j = i + gape;
+
+        while (j < (m + n))
+        {
+            if (i < m && j >= m)
+            {
+                if (a[i] > b[j - m])
+                {
+                    swap(a[i], b[j - m]);
+                }
+            }
+            else if (i >= m)
+            {
+                if (b[i - m] > b[j - m])
+                {
+                    swap(b[i - m], b[j - m]);
+                }
+            }
+            else
+            {
+                if (a[i] > a[j])
+                {
+                    swap(a[i], a[j]);
+                }
+            }
+            i++;
+            j++;
+        }
+        if (gape == 1)
+            break;
+        gape = (gape / 2) + (gape % 2);
+    }
+
     // Optimized
-    int idx = m + n - 1, i = m - 1, j = n - 1;
-    while (i >= 0 && j >= 0)
-    {
-        if (A[i] >= B[j])
-        {
-            A[idx] = A[i];
-            idx--;
-            i--;
-        }
-        else
-        {
-            A[idx] = B[j];
-            idx--;
-            j--;
-        }
-    }
-    while (j >= 0)
-    {
-        A[idx] = B[j];
-        idx--;
-        j--;
-    }
+    // int idx = m + n - 1, i = m - 1, j = n - 1;
+    // while (i >= 0 && j >= 0)
+    // {
+    //     if (A[i] >= B[j])
+    //     {
+    //         A[idx] = A[i];
+    //         idx--;
+    //         i--;
+    //     }
+    //     else
+    //     {
+    //         A[idx] = B[j];
+    //         idx--;
+    //         j--;
+    //     }
+    // }
+    // while (j >= 0)
+    // {
+    //     A[idx] = B[j];
+    //     idx--;
+    //     j--;
+    // }
 
     // // Optimal 1
 
