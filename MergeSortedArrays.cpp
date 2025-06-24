@@ -4,56 +4,77 @@ using namespace std;
 pair<vector<int>, vector<int>> mergeSorted(vector<int> A, vector<int> B, int m, int n)
 {
 
-    // Brute Force
+    // Optimal 1
 
-    int Ai = 0;
+    int Ai = m - 1;
     int Bi = 0;
-    vector<int> C;
-    int Ci = 0;
 
     while (Ai < m && Bi < n)
     {
-        if (A[Ai] <= B[Bi])
+        if (A[Ai] > B[Bi])
         {
-            C.push_back(A[Ai]);
-            Ai++;
-            Ci++;
-        }
-        else
-        {
-            C.push_back(B[Bi]);
+            swap(A[Ai], B[Bi]);
+            Ai--;
             Bi++;
-            Ci++;
-        }
-    }
-
-    while (Ai < m)
-    {
-        C.push_back(A[Ai]);
-        Ai++;
-        Ci++;
-    }
-    while (Bi < n)
-    {
-        C.push_back(B[Bi]);
-        Bi++;
-        Ci++;
-    }
-
-    A.clear();
-    B.clear();
-
-    for (int i = 0; i < n + m; i++)
-    {
-        if (i < m)
-        {
-            A.push_back(C[i]);
         }
         else
         {
-            B.push_back(C[i]);
+            break;
         }
     }
+    sort(A.begin(), A.end());
+    sort(B.begin(), B.end());
+
+    // Brute Force
+
+    // int Ai = 0;
+    // int Bi = 0;
+    // vector<int> C;
+    // int Ci = 0;
+
+    // while (Ai < m && Bi < n)
+    // {
+    //     if (A[Ai] <= B[Bi])
+    //     {
+    //         C.push_back(A[Ai]);
+    //         Ai++;
+    //         Ci++;
+    //     }
+    //     else
+    //     {
+    //         C.push_back(B[Bi]);
+    //         Bi++;
+    //         Ci++;
+    //     }
+    // }
+
+    // while (Ai < m)
+    // {
+    //     C.push_back(A[Ai]);
+    //     Ai++;
+    //     Ci++;
+    // }
+    // while (Bi < n)
+    // {
+    //     C.push_back(B[Bi]);
+    //     Bi++;
+    //     Ci++;
+    // }
+
+    // A.clear();
+    // B.clear();
+
+    // for (int i = 0; i < n + m; i++)
+    // {
+    //     if (i < m)
+    //     {
+    //         A.push_back(C[i]);
+    //     }
+    //     else
+    //     {
+    //         B.push_back(C[i]);
+    //     }
+    // }
 
     return {A, B};
 }
