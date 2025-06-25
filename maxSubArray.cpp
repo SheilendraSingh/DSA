@@ -12,7 +12,7 @@ pair<int, vector<int>> maxSubArray(vector<int> arr)
         if (currentSum > maxSum)
         {
             maxSum = currentSum;
-            e = ;
+            e = i;
         }
 
         if (currentSum < 0)
