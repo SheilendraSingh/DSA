@@ -22,7 +22,7 @@ vector<vector<int>> generatePascal(int n)
     {
         ans.push_back(ansRow(i));
     }
-    return asn;
+    return ans;
 }
 
 int main()
