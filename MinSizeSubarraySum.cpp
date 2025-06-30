@@ -2,25 +2,43 @@
 using namespace std;
 int minSubarraySum(vector<int> &arr, int &k)
 {
-    int n = arr.size();
-    vector<int> prefix(n + 1, 0);
-    int minLen = INT16_MAX;
+    // optimal approach with sliding window
 
-    for (int i = 0; i < n; i++)
+    int n = arr.size();
+    int i = 0, sum = 0;
+    int minLen = INT_MAX;
+
+    for (int j = 0; j < n; j++)
     {
-        prefix[i + 1] = prefix[i] + arr[i];
-    }
-    for (int i = 1; i <= n; i++)
-    {
-        int required = prefix[i - 1] + k;
-        auto it = lower_bound(prefix.begin(), prefix.end(), required);
-        if (it != prefix.end())
+        sum += arr[j];
+        while (sum >= k)
         {
-            int j = it - prefix.begin();
             minLen = min(minLen, j - (i - 1));
+            sum -= arr[i];
+            i++;
         }
     }
-    if (minLen == INT16_MAX)
+
+    // Better approach with prefix sum and binary search
+    // int n = arr.size();
+    // vector<int> prefix(n + 1, 0);
+    // int minLen = INT16_MAX;
+
+    // for (int i = 0; i < n; i++)
+    // {
+    //     prefix[i + 1] = prefix[i] + arr[i];
+    // }
+    // for (int i = 1; i <= n; i++)
+    // {
+    //     int required = prefix[i - 1] + k;
+    //     auto it = lower_bound(prefix.begin(), prefix.end(), required);
+    //     if (it != prefix.end())
+    //     {
+    //         int j = it - prefix.begin();
+    //         minLen = min(minLen, j - (i - 1));
+    //     }
+    // }
+    if (minLen == INT_MAX)
     {
         minLen = 0;
     }
