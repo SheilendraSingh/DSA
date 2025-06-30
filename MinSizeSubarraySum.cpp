@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+using namespace std;
+int minSubarraySum(vector<int> &arr, int &k)
+{
+    int n = arr.size();
+    vector<int> prefix(n + 1, 0);
+    int minLen = INT16_MAX;
+
+    for (int i = 0; i < n; i++)
+    {
+        prefix[i + 1] = prefix[i] + arr[i];
+    }
+    for (int i = 1; i <= n; i++)
+    {
+        int required = prefix[i - 1] + k;
+        auto it = lower_bound(prefix.begin(), prefix.end(), required);
+        if (it != prefix.end())
+        {
+            int j = it - prefix.begin();
+            minLen = min(minLen, j - (i - 1));
+        }
+    }
+    if (minLen == INT16_MAX)
+    {
+        minLen = 0;
+    }
+    return minLen;
+}
+
+int main()
+{
+
+    int n, k;
+    cout << "Enter the size of the array: ";
+    cin >> n;
+    vector<int> arr(n);
+    cout << "Enter the elements in the array: ";
+    for (int &val : arr)
+    {
+        cin >> val;
+    }
+    cout << "Enter the targeted sum: ";
+    cin >> k;
+
+    cout << minSubarraySum(arr, k);
+
+    return 0;
+}
