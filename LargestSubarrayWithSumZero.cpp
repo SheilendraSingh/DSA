@@ -6,7 +6,7 @@ int LarSubWithSumZero(vector<int> &arr)
 
     int n = arr.size();
     unordered_map<int, int> mpp;
-    mpp[0] = -1;
+
     int res = 0;
     long long sum = 0;
 
