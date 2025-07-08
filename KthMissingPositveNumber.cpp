@@ -32,6 +32,8 @@ int main()
     {
         cin >> val;
     }
+    cout << "Enter the target: ";
+    cin >> k;
 
     cout << findKthPositive(arr, k);
 
