@@ -34,6 +34,6 @@ int main()
     }
 
     cout << findKthPositive(arr, k);
-    ;
+
     return 0;
 }
